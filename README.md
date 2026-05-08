@@ -4,8 +4,8 @@
 Scripts for filtering and visualising alignments to transposable elements
 
 **Inputs**
--.fasta file to annotate
-- AMRFinderPlus (version >=4.2.5) tabular output for sequence to annotate
+- .fasta file you would like to annotate
+- AMRFinderPlus (version >=4.2.5) tabular output for sequence you would like to annotate
 - MGE database (or use the one in this repository*)
 - Directory of .fasta files for elements to add to database (can be empty but must exist)
 
