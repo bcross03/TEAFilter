@@ -1,7 +1,7 @@
 # FATE
 ### FATE - Filtering Alignments to Transposable Elements
 
-**Scripts for filtering and visualising alignments to transposable elements**
+Scripts for filtering and visualising alignments to transposable elements
 
 **Inputs**
 -.fasta file to annotate
