@@ -1,5 +1,5 @@
-# FATE
-### FATE - Filtering Alignments to Transposable Elements
+# TEFilter
+### Filtering Alignments to Transposable Elements
 
 Scripts for filtering and visualising alignments to transposable elements
 
