@@ -11,7 +11,7 @@ Scripts for filtering and visualising alignments to transposable elements
 
 **Scripts**
 1. Annotation_Filter_Public.py - runs BLAST and filters outputs
-2. Annotation_Visualisation_Public.py - Takes outputs from script 1 and generates image of remaining alignments for to help with final manual curation
+2. Annotation_Visualisation_Public.py - Takes outputs from script 1 and generates image of remaining alignments to help with final manual curation
 
 
 \* Database is a slightly altered MGEdb, [available here](https://bitbucket.org/mhkj/mgedb/src/master/mgedb/data/sequences.d/mge_records.fna)
