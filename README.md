@@ -7,7 +7,7 @@ Scripts for filtering and visualising alignments to transposable elements
 - .fasta file you would like to annotate
 - AMRFinderPlus (version >=4.2.5) tabular output for sequence you would like to annotate
 - MGE database*
-- Directory of .fasta files for elements to add to database (can be empty but must exist)
+- Directory of .fasta files for elements to add to database (can be empty but must exist, see Additional_Elements/ in this repository for example)
 
 **Scripts**
 1. Annotation_Filter_Public.py - runs BLAST and filters outputs
