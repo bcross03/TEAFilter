@@ -117,7 +117,6 @@ print("After filtering for same coordinates as perfect alignments, " + str(len(m
 
 
 ## STAGE 3: REMOVAL OF ANY ALIGNMENTS JUST TO RESISTANCE GENES
-# TODO make this work for string of ARGs + a bit of element, so it's a more useful step
 
 mge_blast_out_filt3 = mge_blast_out_filt2
 
