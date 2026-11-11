@@ -3,28 +3,32 @@
 import os
 import pandas as pd
 import subprocess
+import sys
 
-# User to change - paths
-out_prefix = "seq_1"
-root_path = "/home/"
-amr_finder_path = root_path + "ARG_Annotation/"+ out_prefix + "_ARG.txt" # path to AMRFinderPlus tabular output file
-fasta_path = root_path + out_prefix + ".fasta" # .fasta for sequence to be annotated
-mge_annotation_outpath = root_path + "MGE_Annotation/" # output directory
-mgedb_fasta_path = root_path + "MGE_db_dd.fasta" # path to mge database (.fasta)
-additional_elements_path = root_path + "Additional_Elements/" # path to directory with .fasta files for elements not in mge database
+# Paths to inputs and outputs
+print("Arguments are (in order):\n(1) output prefix,\n(2) Path to AMRFinderPlus tabular output,\n(3) Path to .fasta to be annotated")
+print("(4) Path to output directory,\n(5) Path to MGE database .fasta file,\n(6) Path to directory of elements to add to MGE database (directory can be empty)")
+
+out_prefix = sys.argv[1]
+root_path = os.getcwd()
+amr_finder_path = root_path + "/" + sys.argv[2] # path to AMRFinderPlus tabular output file (arg must be relative path)
+fasta_path = root_path + "/" + sys.argv[3] # .fasta for sequence to be annotated (arg must be relative path)
+mge_annotation_outpath = root_path + "/" + sys.argv[4]
+mgedb_fasta_path = root_path + "/" + sys.argv[5] # path to mge database (.fasta)
+additional_elements_path = root_path + "/" + sys.argv[6] # path to directory with .fasta files for elements not in mge database
 
 # Directories
 os.makedirs(mge_annotation_outpath, exist_ok = True)
 os.chdir(mge_annotation_outpath)
 
-print("Aligning input sequence to MGEs database")
+print("Aligning input sequence to MGE database")
 
 # Getting ARG Information
 amr_finder = pd.read_table(amr_finder_path, usecols=[2,3,4,5,6,10,11,13,14,15,16,17])
-
 # Running MGE BLAST and importing results
 # Combining MGEdb with the additional elements folder and running BLAST
-subprocess.run( f"cat {mgedb_fasta_path} {additional_elements_path}* >> mge_db_temp.fasta", shell=True)
+subprocess.run( f"cat {mgedb_fasta_path} $(ls {additional_elements_path}) >> mge_db_temp.fasta", shell=True)
+subprocess.run( f"cat mge_db_temp.fasta | seqkit replace -p 'TnC_ISF_Int~~~' >> mge_db_temp.fasta1; mv mge_db_temp.fasta1 mge_db_temp.fasta", shell=True)
 subprocess.run( f"makeblastdb -dbtype nucl -in mge_db_temp.fasta -parse_seqids -out mge_db_temp_blastdb; rm mge_db_temp.fasta", shell=True)
 subprocess.run( f"blastn -task blastn -query {fasta_path} -db mge_db_temp_blastdb -perc_identity 90 -max_target_seqs 7000 -outfmt '6 std qlen slen' -out {out_prefix}_MGE.blastout", shell=True)
 subprocess.run( f"rm mge_db_temp_blastdb*", shell=True)
@@ -192,4 +196,4 @@ print("After all automated filtering, " + str(len(mge_blast_out_filt5)) + " rema
 
 ## SAVE: FILTERED DATAFRAME TO .TSV
 outpath = mge_annotation_outpath + out_prefix + "_MGE_AutoFilt.tsv"
-final_filtered_elements.to_csv(outpath, sep='\t', header=False, index=False)
+final_filtered_elements.to_csv(outpath, sep='\t', index=False)

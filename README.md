@@ -3,6 +3,11 @@
 
 Scripts for filtering and visualising alignments to transposable elements
 
+**Dependencies**
+- Seqkit (tested on version 2.14.0)
+- blast (tested on version 2.17.0+)
+- pandas (tested on version 3.1.1)
+
 **Inputs**
 - .fasta file you would like to annotate
 - AMRFinderPlus (version >=4.2.5) tabular output
@@ -17,3 +22,4 @@ Scripts for filtering and visualising alignments to transposable elements
 
 \* MGEdb contains many transposons, insertion sequences and ICE, [available here](https://bitbucket.org/mhkj/mgedb/src/master/mgedb/data/sequences.d/mge_records.fna) \
 \* TnCentral contains well-curated transposons with some insertion sequences and integrons, [available here](https://tncentral.ncc.unesp.br/data_download)
+\* You can also download the combined TnCentral, Integrall and ISFinder databases (transposons, insertion sequences, and integrons) from TnCentral, [available here](https://tncentral.ncc.unesp.br/data_download)

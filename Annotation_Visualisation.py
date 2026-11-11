@@ -19,7 +19,7 @@ def annotation_visualisation(seq_label, mge_annotation_outpath, mge_path, arg_pa
     col_nums = [0,1,2,3,4,5,6,7,8]
 
     # Read in MGE and ARG outputs
-    mge_blast_out = pd.read_table(mge_path, usecols = col_nums, names = mge_colnames, header=None)
+    mge_blast_out = pd.read_table(mge_path, usecols = col_nums, names = mge_colnames, header=0)
     arg_amr_finder = pd.read_table(arg_path)
 
     # Setting up plot parameters (heights etc.)
@@ -238,6 +238,7 @@ def annotation_visualisation(seq_label, mge_annotation_outpath, mge_path, arg_pa
 
 
 ### Setting paths etc. and running visualisation function
+print("This script has not been adapted to accept arguments, variables indicated in the code (below this print statement) need to be changed by the user")
 root_path = "/home/"
 # Name for sequence - will be outfile prefix
 seq_label = "seq_1"
